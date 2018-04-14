@@ -23,7 +23,7 @@ def is_palindrome_permutation_2(a):
       bit_vector[index] = 0
     else:      
       bit_vector[index] = 1
-  # sum of bit_vecotr should be 1 if all but one char has a odd freq
+  # sum of bit_vector should be 1 if all but one char has a odd freq
   bit_vector_sum = sum(bit_vector)
   return bit_vector_sum == 1 or bit_vector_sum == 0
 
