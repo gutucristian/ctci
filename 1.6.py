@@ -1,22 +1,19 @@
-def string_compression(x):  
+def string_compression(string):  
   count = 1
-  res = [] #O(n)
+  res = []
   i = 0
-
-  #O(n-1)
-  while i < len(x)-1:
-    if x[i] == x[i+1]:
+  
+  while i < len(string)-1:
+    if string[i] == string[i+1]:
       count += 1
     else:
-      res.append(x[i] + str(count))
+      res.append(string[i] + str(count))
       count = 1  
     i += 1     
   
   if i > 0: 
-    res.append(x[i] + str(count)) 
+    res.append(string[i] + str(count)) 
     
-  if len(res) < len(x):
-    return ''.join(res)
-  return x
+  return min(string, ''.join(res), key = len)
 
 print(string_compression('aabcccccaaa'))
