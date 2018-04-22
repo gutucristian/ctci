@@ -79,8 +79,13 @@ lst.add(5)
 lst.add(9)
 lst.add(5)
 
+# print original linked list
 lst.print()
-lst.remove_dups_1()
+lst.remove_dups()
 print()
-# lst.reverse()
+# print linked list after removing duplicates
+lst.print()
+# print reversed linked list
+lst.reverse()
+print()
 lst.print()
