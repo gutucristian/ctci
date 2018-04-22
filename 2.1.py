@@ -36,19 +36,19 @@ class LinkedList():
 
   # O(1) space, O(n^2) time
   def remove_dups_1(self):
-    cur = self.head
+    current = self.head
     runner = None
-    prev = None
-    while cur != None:
-      runner = cur.next
-      prev = cur
+    previous = None
+    while current != None:
+      runner = current.next
+      previous = current
       while runner != None:
-        if runner.data == cur.data:
-          prev.next = runner.next
+        if runner.data == current.data:
+          previous.next = runner.next
         else:
-          prev = runner
+          previous = runner
         runner = runner.next
-      cur = cur.next
+      current = current.next
 
     return self.head
 
@@ -68,11 +68,19 @@ class LinkedList():
 lst = LinkedList()
 
 lst.add(8)
-lst.add(490)
+lst.add(36)
 lst.add(234)
+lst.add(36)
+lst.add(8)
+lst.add(7)
+lst.add(36)
+lst.add(8)
+lst.add(5)
+lst.add(9)
+lst.add(5)
 
 lst.print()
-# lst.remove_dups_1()
+lst.remove_dups_1()
 print()
-lst.reverse()
+# lst.reverse()
 lst.print()
