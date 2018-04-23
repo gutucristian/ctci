@@ -30,5 +30,3 @@ lst.add(6)
 lst.add(2)
 lst.add(8)
 print(lst.kth_to_last(5))
-
-# 8 2 6 5
