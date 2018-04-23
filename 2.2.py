@@ -11,6 +11,8 @@ class LinkedList():
     new_head = Node(data, self.head)
     self.head = new_head
 
+  # iterative solution
+  # O(n) time, O(1) space
   def kth_to_last(self, k):
     runner = self.head
     cur = self.head
