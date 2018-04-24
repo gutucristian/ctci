@@ -22,11 +22,15 @@ class LinkedList():
       node.next = node.next.next
       return True
 
-  def print(self):
+  def __iter__(self):
     current = self.head
     while current:
-      print(current.data)
-      current = current.next
+        yield current
+        current = current.next
+
+  def __str__(self):    
+    values = [x.data for x in self]
+    return ' -> '.join(values)
 
 
 lst = LinkedList()
@@ -35,7 +39,7 @@ lst.add('s')
 node = lst.add('b')
 lst.add('c')
 lst.add('C')
-lst.print()
-lst.delete_middle_node(node)
+print(lst)
+# lst.delete_middle_node(node)
 print()
-lst.print()
+# lst.print()
