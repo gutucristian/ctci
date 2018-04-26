@@ -25,7 +25,7 @@ class LinkedList:
 
   def __len__(self):
     length = 0
-    current = self.head    
+    current = self.head 
     while current:
       length += 1
       current = current.next
