@@ -44,7 +44,7 @@ class LinkedList:
       self.tail = self.tail.next
     return self.tail    
 
-  def add_to_beggining(self, value):
+  def add_to_beginning(self, value):
     if self.head is None:
       self.tail = self.head = Node(value)
     else:
