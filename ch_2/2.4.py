@@ -28,7 +28,7 @@ def partition(ll, ref_node):
 
   for node in ll:    
     if node.value < ref_node.value:
-      res.add_to_beggining(node.value)
+      res.add_to_beginning(node.value)
     else:
       res.add(node.value)            
 
