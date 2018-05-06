@@ -24,7 +24,7 @@ def is_equal(n1, n2):
 		n2 = n2.next
 	return n1 == None and n2 == None
 
-# second possible solution
+# iterative approach
 def is_palindrome(head):
 	slow = fast = head
 	first_half = []
