@@ -1,7 +1,7 @@
 class Node:
-	def __init__(self, value=None, next=None):
-		self.value = value
-		self.next = next
+  def __init__(self, value=None, next=None):
+    self.value = value
+    self.next = next
 
 def intersection(ll_a, ll_b):
   ll_a_tail, ll_a_size = get_tail_and_size(ll_a)
