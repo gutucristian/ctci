@@ -3,7 +3,11 @@ class StackNode:
     self.value = value
     self.next = next
 
-# stack implementation using linked list
+"""A stack is linear data structure that uses last in first out ordering (LIFO). Unlike arrays,
+stacks do not offer constant-time access to the ith item. However, it does allow constant-time adds
+and removes, as it does not require shifting elements around. The following is a stack implementation
+using linked lists.
+"""
 class Stack:
   def __init__(self):
     self.top = None
