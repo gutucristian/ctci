@@ -8,7 +8,7 @@ class Queue:
     self.first = None
     self.last = None
 
-  # add node with 'value' to end of list
+  # add to rear
   def add(self, value):
     t = QueueNode(value)
     if self.last is not None:      
@@ -18,7 +18,7 @@ class Queue:
       self.first = self.last
     return self
 
-  # remove node from beggining of list 
+  # remove from front
   def remove(self):
     if self.first is None: 
       return None
