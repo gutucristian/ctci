@@ -1,3 +1,5 @@
+# TODO: implement flexible stack size solution
+
 class MultiStack:
   def __init__(self, num_of_stacks, stack_size):
     self.num_of_stacks = num_of_stacks
