@@ -12,6 +12,7 @@ class Stack:
   def __init__(self):
     self.top = None
 
+  # remove from front
   def pop(self):
     if self.top is None:
       return None
@@ -19,6 +20,7 @@ class Stack:
     self.top = self.top.next
     return value
 
+  # add to front
   def push(self, value):
     t = StackNode(value, self.top)    
     self.top = t
