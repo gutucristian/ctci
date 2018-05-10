@@ -14,7 +14,7 @@ class Stack:
 
   # remove from front
   def pop(self):
-    if self.top is None:
+    if self.is_empty():
       return None
     value = self.top.value
     self.top = self.top.next
@@ -58,9 +58,9 @@ class Stack:
     values = [str(node.value) for node in self]
     return ' -> '.join(values)  
 
-stack = Stack()
-stack.push('a').push('b').push('c')
-print(stack)
-stack.pop()
-stack.pop()
-print(stack)
+# stack = Stack()
+# stack.push('a').push('b').push('c')
+# print(stack)
+# stack.pop()
+# stack.pop()
+# print(stack)
