@@ -12,7 +12,6 @@ using linked lists.
 class Stack:
   def __init__(self):
     self.top = None
-    self.current_minimum = None
 
   # remove from front
   def pop(self):
@@ -24,12 +23,11 @@ class Stack:
 
   # add to front
   def push(self, value):           
-    if self.current_minimum is None or value < self.current_minimum.value:
-      t = StackNode(value, self.top)
-      t.min = self
-      self.current_minimum = t
+    if self.top:
+      cur_min = min(value, self.top.min)
+      t = StackNode(value, self.top, cur_min)            
     else:  
-      t = StackNode(value, self.top, self.current_minimum)    
+      t = StackNode(value, self.top, value)    
     self.top = t
     return self # return reference object reference to enable chaining
   
@@ -50,10 +48,12 @@ class Stack:
     return ' -> '.join(values)  
 
 stack = Stack()
-stack.push(0).push(3).push(1).push(9)
+stack.push(4).push(2).push(1).push(9)
 print(stack)
-print(stack.current_minimum.value)
+print(stack.top.min)
 stack.pop()
+print(stack)
 stack.pop()
-print(stack.current_minimum.value)
+print(stack)
+print(stack.top.min)
 print(stack)
