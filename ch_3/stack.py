@@ -21,12 +21,28 @@ class Stack:
     return value
 
   # add to front
-  def push(self, value):
-    t = StackNode(value, self.top)    
-    self.top = t
+  def push(self, value=None, custom_node=None):
+    """Creates item and adds it to the top of the linked list.
+    
+    Keyword arguments:
+    value -- value of the item to be added
+    node -- custom item to be added
+    """
+    if custom_node:
+      self.top = custom_node
+    else:
+      t = StackNode(value, self.top)    
+      self.top = t
     return self # return reference object reference to enable chaining
   
-  def peek(self):
+  def peek(self, return_item=False):
+    """Returns value of the top item from the stack.
+    
+    Keyword arguments:    
+    return_item -- if True, returns item from top of stack
+    """
+    if return_item:
+      return self.top    
     return self.top.value if self.top else None
 
   def is_empty(self):
@@ -42,9 +58,9 @@ class Stack:
     values = [str(node.value) for node in self]
     return ' -> '.join(values)  
 
-stack = Stack()
-stack.push('a').push('b').push('c')
-print(stack)
-stack.pop()
-stack.pop()
-print(stack)
+# stack = Stack()
+# stack.push('a').push('b').push('c')
+# print(stack)
+# stack.pop()
+# stack.pop()
+# print(stack)
