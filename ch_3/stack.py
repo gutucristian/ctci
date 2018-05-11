@@ -11,6 +11,7 @@ using linked lists.
 class Stack:
   def __init__(self):
     self.top = None
+    self.size = 0
 
   # remove from front
   def pop(self):
@@ -18,6 +19,7 @@ class Stack:
       return None
     value = self.top.value
     self.top = self.top.next
+    self.size -= 1
     return value
 
   # add to front
@@ -33,6 +35,7 @@ class Stack:
     else:
       t = StackNode(value, self.top)    
       self.top = t
+    self.size += 1
     return self # return reference object reference to enable chaining
   
   def peek(self, return_obj=False):
