@@ -11,7 +11,7 @@ using linked lists.
 class Stack:
   def __init__(self):
     self.top = None
-    self.size = 0
+    self.size = 0    
 
   # remove from front
   def pop(self):
@@ -59,7 +59,10 @@ class Stack:
 
   def __str__(self):
     values = [str(node.value) for node in self]
-    return ' -> '.join(values)  
+    return ' -> '.join(values)
+
+  def __len__(self):
+    return self.size
 
 # stack = Stack()
 # stack.push('a').push('b').push('c')
