@@ -22,6 +22,7 @@ class Stack:
       return False
     self.size += 1
     n = Node(value)
+    if self.size == 1: self.bottom = n
     self.join(n, self.top)
     self.top = n
     return True
@@ -45,7 +46,6 @@ class Stack:
 
   def remove_bottom(self):
     b = self.bottom
-    print(b.value)
     self.bottom = self.bottom.above
     if self.bottom is not None:
       self.bottom.below = None
@@ -113,10 +113,10 @@ class SetOfStacks:
 
 
 stack = SetOfStacks(3)
-stack.push(9).push(1).push(2)
-stack.push(6).push(7).push(5)
-stack.push(3).push(0).push(9)
-stack.push(4).push(2).push(9)
+stack.push(2).push(1).push(9)
+stack.push(5).push(7).push(6)
+stack.push(1).push(0).push(3)
+stack.push(9).push(2).push(4)
 stack.push(7)
 print(stack)
 stack.pop_at(1)
