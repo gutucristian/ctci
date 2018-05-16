@@ -23,9 +23,10 @@ class MyQueue:
     return self.stack_oldest.pop()
 
 queue = MyQueue()
-queue.add(1).add(2).add(3).add(7)
+queue.add(1).add(2)
 print(queue.remove())
+queue.add(3)
 print(queue.remove())
-print(queue.remove())
+queue.add(4)
 print(queue.remove())
 print(queue.remove())
