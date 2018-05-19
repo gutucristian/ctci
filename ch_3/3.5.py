@@ -1,36 +1,19 @@
 from stack import Stack
 
-class SortedStack():
-  def __init__(self):    
-    self.sorted_stack = Stack()
-    self.tmp_stack = Stack()
+def sort(stack):
+  tmp_stack = Stack()  
+  while stack.is_empty() is False:
+    top = stack.pop()
+    while tmp_stack.is_empty() is False and top < tmp_stack.peek():
+      stack.push(tmp_stack.pop())
+    tmp_stack.push(top)
+  
+  while tmp_stack.is_empty() is False:
+    stack.push(tmp_stack.pop())
 
-  def push(self, value):
-    if self.sorted_stack.is_empty():
-      self.sorted_stack.push(value)
-    else:
-      while self.sorted_stack.is_empty() is not True and value > self.sorted_stack.peek():
-        self.tmp_stack.push(self.sorted_stack.pop())
-      self.sorted_stack.push(value)
-      while self.tmp_stack.is_empty() is not True:
-        self.sorted_stack.push(self.tmp_stack.pop())    
-    return self
+  return stack
 
-  def pop(self):
-    return self.sorted_stack.pop()
-
-  def peek(self):
-    return self.sorted_stack.peek()
-
-  def is_empty(self):
-    return self.sorted_stack.is_empty()
-
-  def __str__(self):
-    return self.sorted_stack.__str__()
-
-stack = SortedStack()
-stack.push(3).push(1).push(5)
-print(stack.pop())
-print(stack.sorted_stack)
-stack.push(19)
-print(stack.sorted_stack)
+stack = Stack()
+stack.push(3).push(1).push(5).push(8)
+sort(stack)
+print(stack.__str__())
