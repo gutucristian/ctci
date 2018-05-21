@@ -56,6 +56,13 @@ class LinkedList:
     for value in values:
       self.add(value)
 
+  # remove Node from beginning
+  def remove(self):
+    v = self.head.value
+    if self.head is not None:          
+      self.head = self.head.next
+    return v
+
   def generate(self, n, min_value, max_value):
     """Generates a new linked list with n nodes where each node value is in range [min_value, max_value]."""
     self.tail = self.head = None
