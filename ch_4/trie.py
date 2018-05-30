@@ -16,6 +16,8 @@ class Trie:
       current = current.children[char]
     current.is_end_of_word = True
 
+    return self
+
   def search(self, word):
     current = self.root
 
@@ -38,18 +40,37 @@ class Trie:
 
   def auto_complete(self, prefix):
     current = self.root
-    res = []
+    words = []
+
     for char in prefix:
       if char not in current.children:
         return False
       current = current.children[char]
 
-    if current.is_end_of_word: res.append(prefix)
+    if current.is_end_of_word: words.append(prefix)
 
-    def helper(current, word):
-      for key, value in current.children:
-        helper(value, word + key)
+    def helper(current, string):
+      for key, value in current.children.items():
+        helper(value, string + key)
       if current.is_end_of_word:
-        res.append(word)
+        words.append(string)
       
     helper(current, prefix)
+    return words
+
+  def __str__(self):
+    words = []
+    
+    def helper(current, string):
+      for key, value in current.children.items():
+        helper(value, string + [key])
+      if current.is_end_of_word:
+        words.append(''.join(string))
+
+    helper(self.root, [])
+    return ','.join(words)
+
+trie = Trie()
+trie.insert('ball').insert('bat').insert('doll').insert('dork').insert('dorm').insert('send').insert('sense')
+print(trie)
+# print(trie.auto_complete('b'))
