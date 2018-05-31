@@ -1,3 +1,6 @@
+# https://www.youtube.com/watch?v=ZRB7rIWO81U
+# https://www.youtube.com/watch?v=7XmS8McW_1U
+
 class TrieNode:
   def __init__(self):    
     self.children = {}
