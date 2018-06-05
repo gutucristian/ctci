@@ -1,3 +1,7 @@
+'''
+A binary search tree is a binary tree that has the following property: all left descendants <= root < all right descendants
+'''
+
 class Node:
   def __init__(self, value):
     self.value = value
@@ -34,6 +38,7 @@ class Node:
       else:
         return False
 
+  # root node is visited inbetween children
   def inorder(self):
     if self:
       if self.left_child:
@@ -42,6 +47,7 @@ class Node:
       if self.right_child:
         return self.right_child.inorder()
 
+  # root node is visited before (pre) children
   def preorder(self):
     if self:
       print(self.value)
@@ -50,6 +56,7 @@ class Node:
       if self.right_child:
         self.right_child.preorder()
   
+  # root node is visited after (post) children
   def postorder(self):
     if self:      
       if self.left_child:
