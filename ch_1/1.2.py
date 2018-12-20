@@ -1,9 +1,10 @@
 from collections import Counter
 from functools import reduce
 
+
+# time complexity is O(2n) = O(n) due to traversing a and b
+# space complexity is O(2n) = O(n) for storing character frequencies of a and b in dictionaries
 def is_permutation_1(a, b):
-  # time complexity is O(2n) = O(n) due to traversing a and b
-  # space complexity is O(2n) = O(n) for storing character frequencies of a and b in dictionaries
   return Counter(a) == Counter(b)
 
 # time complexity is O(n) due to traversal of s1 and s2
