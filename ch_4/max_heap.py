@@ -7,7 +7,7 @@ max heap operations:
 2. peek()
 3. pop()
 
-How to perform operations assuming heap is represented as a list:
+How to perform operations assuming heap is represented as a list
 push:
 - add value to end of array
 - float value up to its proper position
