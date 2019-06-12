@@ -9,46 +9,75 @@ class Main {
     }
   }
 
+  // time complexity O(n)
+  // space complexity O(1)
   static boolean isOneEditAway(String a, String b) {
-    if (a.length() == b.length()) {
-      return oneEditReplace(a, b);
-    } else if (a.length() + 1 == b.length()) {
-      return oneEditInsert(a, b);
-    } else if (a.length() - 1 == b.length()) {
-      return oneEditInsert(b, a);
-    }
-    return false;
-  }
+    if (Math.abs(a.length() - b.length()) > 1) return false;
 
-  static boolean oneEditReplace(String a, String b) {
-    boolean oneEdit = false;
+    String s1 = a.length() < b.length() ? a : b; // O(1) space complexity (s1 points to a or b, it does not make a copy, reason: Java String pool)
+    String s2 = a.length() < b.length() ? b : a; // O(1) space complexity (s2 points to a or b, it does not make a copy)
+  
+    // System.out.printf("(s1 == a) %b\n", s1 == a);
+    // System.out.printf("(s1 == b) %b\n", s1 == b);
+    // System.out.printf("(s2 == a) %b\n", s2 == a);
+    // System.out.printf("(s2 == b) %b\n", s2 == b);
+    
     int i = 0, j = 0;
-    while (i < a.length()) {
-      if (a.charAt(i) != b.charAt(j)) {
-        if (oneEdit) return false;
-        oneEdit = true;
-      }
-      ++i;
-      ++j;
-    }
-    return true;
-  }
+    boolean foundDifference = false;
 
-  static boolean oneEditInsert(String a, String b) {
-    boolean oneInsert = false;
-    int i = 0, j = 0;
-    while (i < a.length()) {
-      if (a.charAt(i) != b.charAt(j)) {
-        if (oneInsert) return false;
-        oneInsert = true;
-        ++j;
+    while (j < s2.length() && i < s1.length()) {
+      if (s1.charAt(i) != s2.charAt(j)) {
+        if (foundDifference) return false;
+        foundDifference = true;
+        if (s1.length() == s2.length()) {
+          ++i;
+        }
       } else {
         ++i;
-        ++j;
       }
-    }
+      ++j;
+    }    
+    
     return true;
   }
+
+  // static boolean isOneEditAway(String a, String b) {
+  //   if (a.length() == b.length()) {
+  //     return oneEditReplace(a, b);
+  //   } else if (a.length() + 1 == b.length()) {
+  //     return oneEditInsert(a, b);
+  //   } else if (a.length() - 1 == b.length()) {
+  //     return oneEditInsert(b, a);
+  //   }
+  //   return false;
+  // }
+
+  // static boolean oneEditReplace(String a, String b) {
+  //   boolean oneEdit = false;
+  //   for (int i = 0; i < a.length(); ++i) {
+  //     if (a.charAt(i) != b.charAt(i)) {
+  //       if (oneEdit) return false;
+  //       oneEdit = true;
+  //     }
+  //   }
+  //   return true;
+  // }
+
+  // static boolean oneEditInsert(String a, String b) {
+  //   boolean oneInsert = false;
+  //   int i = 0, j = 0;
+  //   while (i < a.length()) {
+  //     if (a.charAt(i) != b.charAt(j)) {
+  //       if (oneInsert) return false;
+  //       oneInsert = true;
+  //       ++j;
+  //     } else {
+  //       ++i;
+  //       ++j;
+  //     }
+  //   }
+  //   return true;
+  // }
 
   // static boolean isOneEditAway(String a, String b, boolean oneEdit) {
   //   if (Math.abs(a.length() - b.length()) > 1) return false;
