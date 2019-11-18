@@ -1,0 +1,25 @@
+from min_heap import MinHeap
+from node import Node
+
+heap = MinHeap()
+
+A = (Node("A", 4), 4) # format: (node, priority)
+heap.push(A[0], A[1])
+print("min heap: {}".format(heap))
+heap.push(Node("B", 1), 1)
+print("min heap: {}".format(heap))
+heap.push(Node("C", 2), 2)
+print("min heap: {}".format(heap))
+heap.push(Node("D", 5), 5)
+print("min heap: {}".format(heap))
+heap.pop()
+E = (Node("E", 3), 3)
+print("min heap: {}".format(heap))
+heap.push(E[0], E[1])
+print("min heap: {}".format(heap))
+heap.update_priority(A[0], 1)
+print("min heap: {}".format(heap))
+heap.push(Node("F", 9), 9)
+print("min heap: {}".format(heap))
+heap.update_priority(A[0], 10)
+print("min heap: {}".format(heap))
