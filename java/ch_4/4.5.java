@@ -15,11 +15,13 @@ class TreeNode {
 
 class Main {
   public static void main(String[] args) {
-    int[] arr = {17, 10, 28, 5, 13, 24, 35, 3, 7, 12, 15, 21, 27, 30, 38};
+    // int[] arr = {17, 10, 28, 5, 13, 24, 35, 3, 7, 12, 15, 21, 27, 30, 38}; // valid BST
+    int[] arr = {17, 10, 28, 5, 13, 24, 35, 3, 7, 12, 15, 27, 27, 30, 38}; // invalid BST
     TreeNode root = buildTree(arr, 0);
-		// printTree(root);
+		printTree(root);
 		// System.out.println(getTreeAsList(root, new ArrayList<Integer>()));
 		System.out.println(isBST(root));
+		System.out.println(isBSTRecur(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
   }
 
   /*
@@ -66,5 +68,13 @@ class Main {
 	public static boolean isBST(TreeNode root) {
 		List<Integer> treeAsList = getTreeAsList(root, new ArrayList<Integer>());
 		return isSorted(treeAsList);
+	}
+
+	public static boolean isBSTRecur(TreeNode root, int min, int max) {
+		if (root == null)
+			return true;
+		if (root.val < min || root.val > max)
+			return false;
+		return isBSTRecur(root.left, min, root.val) && isBSTRecur(root.right, root.val, max);
 	}
 }
