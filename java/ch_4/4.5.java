@@ -39,10 +39,8 @@ class Main {
 		level.add(root);
 		while(level.peek() != null) {
 			int size = level.size();
-			// System.out.println("size = " + size);
 			for (int i = 0; i < size; i++) {
 				TreeNode cur = level.poll();
-				// System.out.println("i = " + i + " | cur val = " + cur.val);
 				System.out.print(cur.val + " ");
 				level.add(cur.left);
 				level.add(cur.right);
