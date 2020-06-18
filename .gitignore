@@ -1,4 +1,12 @@
-java/ch_1/*.class
-java/ch_2/*.class
-java/misc/*.class
 .idea
+
+# exclude files containing Java bytecode
+**/*.class 
+
+# NOTES 
+
+# 1. The double star ("**") selects all folders within the current folder, with the current folder being the directory where .gitignore is located
+
+# 2. The single star ("*") selects everything in current folder, with the current folder being the directory where .gitignore is located
+
+# 3. An optional prefix "!" which negates the pattern; any matching file excluded by a previous pattern will become included again
