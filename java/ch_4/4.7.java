@@ -1,13 +1,14 @@
-package foo;
-
 import java.util.*;
 
 class Main {
   public static void main(String[] args) {
     String[] projects = { "a", "b", "c", "d", "e", "f" };
-    String[][] dependencies = {{"a", "d"}, {"b", "d"}, {"c", "d"}, {"f", "b"}, {"a", "f"}};
-    Graph g = new Graph(projects, dependencies);
-    System.out.println(g.toString());
+    /*
+      In the pairs, the second project depends on the first.
+      I.e., in project pairs, index 0 is provider and index 1 is dependency.
+    */
+    String[][] dependencies = { {"a", "d"}, {"b", "d"}, {"c", "d"}, {"f", "b"}, {"a", "f"} };
+    Graph g = new Graph(projects, dependencies);  
   }
 }
 
