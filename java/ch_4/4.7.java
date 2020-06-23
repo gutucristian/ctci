@@ -9,7 +9,7 @@ class Main {
     */
     String[][] dependencies = { {"a", "d"}, {"b", "d"}, {"c", "d"}, {"f", "b"}, {"a", "f"} };
     Graph dependencyGraph = new Graph(projects, dependencies);
-    System.out.println(dependencyGraph.nodes.size());
+    System.out.println(dependencyGraph.map.size());
     ArrayList<Node> buildOrder = getBuildOrder(dependencyGraph);
 
     for (Node project: buildOrder) {
@@ -18,7 +18,7 @@ class Main {
   }
 
   public static ArrayList<Node> getBuildOrder(Graph dependencyGraph) {
-    ArrayList<Node> buildOrder = new ArrayList<>(dependencyGraph.nodes.size());
+    ArrayList<Node> buildOrder = new ArrayList<>(dependencyGraph.map.size());
     ArrayList<Node> toBeProcessed = new ArrayList<>();
 
     do {
@@ -34,7 +34,7 @@ class Main {
       System.out.println("[INFO] begin inspecting dependency graph...");
 
       // identify all projects with 0 providers and add to processing
-      for (Node project: dependencyGraph.nodes) {
+      for (Node project: dependencyGraph.map.values()) {
         System.out.println("checking node \"" + project.name + "\" (requires " + project.providers.size() + " providers)");
         if (project.providers.size() == 0) {
           System.out.println("\tadd node \"" + project.name + "\" to be processed");
@@ -57,13 +57,11 @@ class Main {
 }
 
 class Graph {
-  public ArrayList<Node> nodes = new ArrayList<>(); // for convenient retrieval of all nodes
   public HashMap<String, Node> map = new HashMap<>(); // for O(1) put / get
 
   public Graph(String[] projects, String[][] dependencies) {
     for (String name: projects) {
       Node project = new Node(name);
-      nodes.add(project);
       map.put(name, project);
     }
     for (String[] pair: dependencies) {
@@ -78,7 +76,6 @@ class Graph {
     if (map.containsKey(project.name)) {
       // remove node from graph
       map.remove(project.name);
-      nodes.remove(project);
 
       // remove node as a provider from its dependencies (its been built, so its no longer a dependency)
       for (Node dependent: project.dependents.values()) {
