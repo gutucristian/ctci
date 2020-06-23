@@ -18,19 +18,14 @@ class Main {
   }
 
   public static ArrayList<Node> getBuildOrder(Graph dependencyGraph) {
-    /*
-      1. Identify all nodes that have 0 dependencies
-      2. Add them to build order
-      3. Remove them from dependency graph
-      4. Remove self from provider's dependency map
-    */
     ArrayList<Node> buildOrder = new ArrayList<>(dependencyGraph.nodes.size());
     ArrayList<Node> toBeProcessed = new ArrayList<>();
 
     do {
-      // copy projects to be processed next to build order and remove from dependency graph
       for (Node project: toBeProcessed) {
+        // remove project from dependency graph and remove it as a dependency in projects where it is a provider
         dependencyGraph.removeNode(project);
+        // add projects to be processed next to build order
         buildOrder.add(project);
       }
 
@@ -38,7 +33,7 @@ class Main {
 
       System.out.println("[INFO] begin inspecting dependency graph...");
 
-      // identify all projects with 0 dependencies and add to processing
+      // identify all projects with 0 providers and add to processing
       for (Node project: dependencyGraph.nodes) {
         System.out.println("checking node \"" + project.name + "\" (requires " + project.providers.size() + " providers)");
         if (project.providers.size() == 0) {
@@ -57,7 +52,6 @@ class Main {
       System.out.println();
     } while (toBeProcessed.size() > 0);
 
-    // Collections.reverse(buildOrder);
     return buildOrder;
   }
 }
