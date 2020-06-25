@@ -7,7 +7,7 @@ class Main {
       In the pairs, the second project depends on the first.
       I.e., index 0 is provider and index 1 is dependency.
     */
-    String[][] dependencies = { {"a", "d"}, {"b", "d"}, {"c", "d"}, {"f", "b"}, {"a", "f"} };
+    String[][] dependencies = { {"a", "d"}, {"f", "b"}, {"b", "d"}, {"f", "a"}, {"d", "c"} };
     Graph dependencyGraph = new Graph(projects, dependencies);
     System.out.println(dependencyGraph.map.size());
     ArrayList<Node> buildOrder = getBuildOrder(dependencyGraph);
