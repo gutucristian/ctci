@@ -1,4 +1,5 @@
-class TreeNode {
+class CheckBalanced {
+  private static class TreeNode {
     public int val;
     public TreeNode left;
     public TreeNode right;
@@ -12,9 +13,8 @@ class TreeNode {
         this.left = left;
         this.right = right;
     }
-}
+  }
 
-class Main {
     public static void main(String[] args) {
         TreeNode a = new TreeNode(13);
         TreeNode b = new TreeNode(9);

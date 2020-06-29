@@ -1,11 +1,12 @@
 // Alternative solution to build order problem (i.e., topological sort)
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
-class Main {
+class BuildOrderIterative {
   public static void main(String[] args) {
-    String[] projects = { "a", "b", "c", "d", "e", "f" };
-    String[][] dependencies = { {"d", "g"}, {"f", "c"}, {"f", "b"}, {"f", "a"}, {"a", "e"}, {"b", "e"} };
+    String[] projects = { "a", "b", "c", "d", "e", "f", "g" };
+    String[][] dependencies = { {"f", "b"}, {"f", "a"}, {"f", "c"}, {"a", "e"}, {"b", "e"}, {"d" ,"g"} };
     Project[] order = findBuildOrder(projects, dependencies);
     for (Project project: order) {
       System.out.print(project.getName() + " ");

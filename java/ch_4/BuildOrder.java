@@ -1,6 +1,59 @@
 import java.util.*;
 
-class Main {
+class BuildOrder {
+  private static class Node {
+    public final String name;
+    public Map<String, Node> providers; // "programming to an interface"
+    public Map<String, Node> dependents;
+
+    Node (String name) {
+      this.name = name;
+      providers = new HashMap<>();
+      dependents = new HashMap<>();
+    }
+
+    public void addDependency(Node dependent) {
+      dependents.put(dependent.name, dependent);
+    }
+
+    public void addProvider(Node provider) {
+      providers.put(provider.name, provider);
+    }
+
+    public void removeProvider(Node provider) {
+      providers.remove(provider.name);
+    }
+  }
+
+  private static class Graph {
+    public HashMap<String, Node> map = new HashMap<>(); // for O(1) put / get
+
+    public Graph(String[] projects, String[][] dependencies) {
+      for (String name: projects) {
+        Node project = new Node(name);
+        map.put(name, project);
+      }
+      for (String[] pair: dependencies) {
+        Node provider = map.get(pair[0]); // provider is used by dependent
+        Node dependent = map.get(pair[1]); // dependent relies on provider
+        provider.addDependency(dependent);
+        dependent.addProvider(provider);
+      }
+    }
+
+    public void removeNode(Node project) {
+      if (map.containsKey(project.name)) {
+        // remove node from graph
+        map.remove(project.name);
+
+        // remove node as a provider from its dependencies (its been built, so its no longer a dependency)
+        for (Node dependent: project.dependents.values()) {
+          dependent.removeProvider(project);
+        }
+      }
+    }
+  }
+
   public static void main(String[] args) {
     String[] projects = { "a", "b", "c", "d", "e", "f" };
     /*
@@ -53,58 +106,5 @@ class Main {
     } while (toBeProcessed.size() > 0);
 
     return buildOrder;
-  }
-}
-
-class Graph {
-  public HashMap<String, Node> map = new HashMap<>(); // for O(1) put / get
-
-  public Graph(String[] projects, String[][] dependencies) {
-    for (String name: projects) {
-      Node project = new Node(name);
-      map.put(name, project);
-    }
-    for (String[] pair: dependencies) {
-      Node provider = map.get(pair[0]); // provider is used by dependent
-      Node dependent = map.get(pair[1]); // dependent relies on provider
-      provider.addDependency(dependent);
-      dependent.addProvider(provider);
-    }
-  }
-
-  public void removeNode(Node project) {
-    if (map.containsKey(project.name)) {
-      // remove node from graph
-      map.remove(project.name);
-
-      // remove node as a provider from its dependencies (its been built, so its no longer a dependency)
-      for (Node dependent: project.dependents.values()) {
-        dependent.removeProvider(project);
-      }
-    }
-  }
-}
-
-class Node {
-  public final String name;
-  public Map<String, Node> providers; // "programming to an interface"
-  public Map<String, Node> dependents;
-
-  Node (String name) {
-    this.name = name;
-    providers = new HashMap<>();
-    dependents = new HashMap<>();
-  }
-
-  public void addDependency(Node dependent) {
-    dependents.put(dependent.name, dependent);
-  }
-
-  public void addProvider(Node provider) {
-    providers.put(provider.name, provider);
-  }
-
-  public void removeProvider(Node provider) {
-    providers.remove(provider.name);
   }
 }

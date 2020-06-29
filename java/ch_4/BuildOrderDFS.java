@@ -1,14 +1,25 @@
-public class Main {
-  public static void main(String[] args) {
+import java.util.*;
 
+public class BuildOrderDFS {
+  public static void main(String[] args) {
+    String[] projects = { "a", "b", "c", "d", "e", "f", "g" };
+    String[][] dependencies = { {"f", "b"}, {"f", "a"}, {"f", "c"}, {"a", "e"}, {"b", "e"}, {"d" ,"g"} };
+    Stack<Project> order = findBuildOrder(projects, dependencies);
+    // for (Project project: order) {
+    //   System.out.print(project.getName() + " ");
+    // }
+    int len = order.size();
+    for (int i = 0; i < len; i++) {
+      System.out.print(order.pop().getName() + " ");
+    }
   }
 
-  Stack<Project> findBuildOrder(String[] projects, String[][] dependencies) {
+  static Stack<Project> findBuildOrder(String[] projects, String[][] dependencies) {
     Graph graph = buildGraph(projects, dependencies);
     return orderProjects(graph.getNodes());
   }
 
-  Stack<Project> orderProjects(ArrayList<Project> projects) {
+  static Stack<Project> orderProjects(ArrayList<Project> projects) {
     Stack<Project> stack = new Stack<Project>();
     for (Project project: projects) {
       if (project.getState() == Project.State.BLANK) {
@@ -20,8 +31,8 @@ public class Main {
     return stack;
   }
 
-  boolean doDFS(Project project, Stack<Project> stack) {
-    if (project.getState() == Projet.State.PARTIAL) {
+  static boolean doDFS(Project project, Stack<Project> stack) {
+    if (project.getState() == Project.State.PARTIAL) {
       return false; // cycle
     }
 
@@ -89,18 +100,13 @@ public class Main {
       if (!map.containsKey(node.getName())) {
         children.add(node);
         map.put(node.getName(), node);
-        node.incrementDependencies();
       }
     }
-
-    void incrementDependencies() { ++dependencies; }
-    void decrementDependencies() { --dependencies; }
 
     public State getState() { return state; }
     public void setState(State st) { state = st; }
 
     String getName() { return name; }
     ArrayList<Project> getChildren() { return children; }
-    int getNumberDependencies() { return dependencies; }
   }
 }

@@ -1,51 +1,51 @@
 import java.util.Queue;
 import java.util.LinkedList;
 
-class Node {
-	Node left;
-	Node right;
-	Node parent;
-	final int val;
-	
-	Node(Node parent, int val) {
-		this.val = val;
-		this.parent = parent;
-	}
+class Successor {
+  private static class Node {
+    Node left;
+    Node right;
+    Node parent;
+    final int val;
 
-	@Override
-	public boolean equals(Object o) {
-		// self check
-		if (this == o) 
-		return true;
-		// null check
-		if (o == null)
-		return false;
-		// type check
-		if (getClass() != o.getClass())
-		return false;
-		// cast
-		Node node = (Node) o;
-		// field comparison
-		return val == node.val;
-	}
-	
-	/* 
-		NOTE: whenever you provide a custom implementation for equals
-		hashCode must also be overrided to return same hash code for
-		equal objects (objects with same hash code may not be equal, but
-		objects that are equal have same hash code). 
-	*/
+    Node(Node parent, int val) {
+      this.val = val;
+      this.parent = parent;
+    }
 
-	@Override
-	public int hashCode() {
-		int prime = 31;
-		int result = 1;
-		result = prime * result + ((Integer) val).hashCode();
-		return result;
-	}
-}
+    @Override
+    public boolean equals(Object o) {
+      // self check
+      if (this == o)
+      return true;
+      // null check
+      if (o == null)
+      return false;
+      // type check
+      if (getClass() != o.getClass())
+      return false;
+      // cast
+      Node node = (Node) o;
+      // field comparison
+      return val == node.val;
+    }
 
-class Main {
+    /*
+      NOTE: whenever you provide a custom implementation for equals
+      hashCode must also be overrided to return same hash code for
+      equal objects (objects with same hash code may not be equal, but
+      objects that are equal have same hash code).
+    */
+
+    @Override
+    public int hashCode() {
+      int prime = 31;
+      int result = 1;
+      result = prime * result + ((Integer) val).hashCode();
+      return result;
+    }
+  }
+
 	public static void main(String[] args) {
 		int[] tree = {12, 9, 15, 4, 11, 13, 22};
 		Node root = buildTree(null, tree, 0);
@@ -82,9 +82,9 @@ class Main {
 
 	/**
 	* Find Node in BST with given value.
-	* 
+	*
 	* @param		val		the value of the Node to find
-	* @return					the associated Node	
+	* @return					the associated Node
 	*/
 	public static Node findNode(Node root, int val) {
 		if (root == null) {

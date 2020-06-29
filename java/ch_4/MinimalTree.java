@@ -1,19 +1,23 @@
+/*
+  Problem: chapter 4 problem 2
+*/
+
 import java.util.Queue;
 import java.util.LinkedList;
 
-class TreeNode {
-  public int val;
-  public TreeNode left;
-  public TreeNode right;
+class MinimalTree {
+  private static class TreeNode {
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
-  TreeNode(int val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
+    TreeNode(int val) {
+      this.val = val;
+      this.left = null;
+      this.right = null;
+    }
   }
-}
 
-class Main {
   public static TreeNode createMinimalBST(int[] array, int start, int end) {
     if (start > end) {
       return null;

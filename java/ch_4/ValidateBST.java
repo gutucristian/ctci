@@ -3,17 +3,17 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
 
-class TreeNode {
-  public TreeNode left;
-  public TreeNode right;
-  public int val;
+class ValidateBST {
+  private static class TreeNode {
+    public TreeNode left;
+    public TreeNode right;
+    public int val;
 
-  TreeNode(int val) {
-    this.val = val;
+    TreeNode(int val) {
+      this.val = val;
+    }
   }
-}
 
-class Main {
   public static void main(String[] args) {
     // int[] arr = {17, 10, 28, 5, 13, 24, 35, 3, 7, 12, 15, 21, 27, 30, 38}; // valid BST
     int[] arr = {17, 10, 28, 5, 13, 24, 35, 3, 7, 12, 15, 27, 27, 30, 38}; // invalid BST
@@ -30,7 +30,7 @@ class Main {
   */
   public static TreeNode buildTree(int[] array, int i) {
     if (i < 0 || i >= array.length) return null;
-    TreeNode node = new TreeNode(array[i]);    
+    TreeNode node = new TreeNode(array[i]);
     node.left = buildTree(array, 2*i + 1);
     node.right = buildTree(array, 2*i + 2);
     return node;

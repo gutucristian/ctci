@@ -3,19 +3,19 @@ import java.util.Queue;
 import java.util.List;
 import java.util.ArrayList;
 
-class TreeNode {
-  public int val;
-  public TreeNode left;
-  public TreeNode right;
+class ListOfDepths {
+  private static class TreeNode {
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
-  TreeNode(int val) {
-    this.val = val;
-    this.right = null;
-    this.left = null;
+    TreeNode(int val) {
+      this.val = val;
+      this.right = null;
+      this.left = null;
+    }
   }
-}
 
-class Main {
   // recursively creates a minimal binary search tree from a sorted array
   // and returns the root
   public static TreeNode createMinimalBST(int[] array, int start, int end) {
