@@ -1,12 +1,14 @@
 .idea
 
-# exclude files containing Java bytecode
-**/*.class 
+# Recursively matches any file ending with class at any depth under current directory (i.e., "/")
+**/*.class
 
-# NOTES 
+# NOTES
 
 # 1. The double star ("**") selects all folders within the current folder, with the current folder being the directory where .gitignore is located
 
 # 2. The single star ("*") selects everything in current folder, with the current folder being the directory where .gitignore is located
 
 # 3. An optional prefix "!" which negates the pattern; any matching file excluded by a previous pattern will become included again
+
+# https://stackoverflow.com/questions/41761128/are-leading-asterisks-redundant-in-gitignore-path-matching-syntax
