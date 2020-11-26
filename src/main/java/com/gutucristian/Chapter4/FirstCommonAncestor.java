@@ -79,10 +79,9 @@ class FirstCommonAncestor {
     int depth = 0;
 
     while (node != null) {
+      System.out.println("Depth: " + depth + " , now at node: " + node.value);
       node = node.parent;
       depth++;
-
-      System.out.println("Depth: " + depth + " , now at node: " + node.value);
     }
     return depth;
   }
